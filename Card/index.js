@@ -11,7 +11,7 @@ class DeckOfCard {
         ))
 
         // create shuffled deck card
-        this.shuffled = this.cards;
+        this.shuffled = this.cards.slice(0);
         this.shuffle();
     }
 
@@ -28,7 +28,7 @@ class DeckOfCard {
             this.shuffled[i] = this.shuffled[j];
             this.shuffled[j] = temp;
         }
-        this.unpicked = this.shuffled;
+        this.unpicked = this.shuffled.slice(0);
     }
 
     pickOneRandom(){
@@ -52,6 +52,12 @@ class DeckOfCard {
         const idx = Math.floor(Math.random() * arrTemp.length -1);
         return arrTemp[idx];
     }
+    
+    reset(){
+        this.shuffle();
+        this.unpicked = this.shuffled.splice(0);
+
+    }
 }
 
 const deckOfCard = new DeckOfCard();
@@ -63,4 +69,4 @@ console.log(deckOfCard.pickOneRandom());
 console.log('============ Pick One Unpicked ============')
 console.log(deckOfCard.pickOneUnpicked());
 console.log('============ Pick One Specific (Diamond) ============')
-console.log(deckOfCard.pickOndeSpecific('DIAMOND'));
+console.log(deckOfCard.pickOndeSpecific('CLUB'));
