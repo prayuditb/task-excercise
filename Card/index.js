@@ -15,6 +15,10 @@ class DeckOfCard {
         this.shuffle();
     }
 
+    getAll(){
+        return this.cards;
+    }
+
     shuffle() {
         // Fisher–Yates shuffle algorithm
         const length = this.shuffled.length - 1;
@@ -38,11 +42,25 @@ class DeckOfCard {
         return result[0];
     }
 
-
+    pickOndeSpecific(type){
+        const arrTemp = []
+        for(let i = 0; i < this.cards.length -1; i++){
+            if(this.cards[i].type == type){
+                arrTemp.push(this.cards[i]);
+            }
+        }
+        const idx = Math.floor(Math.random() * arrTemp.length -1);
+        return arrTemp[idx];
+    }
 }
 
 const deckOfCard = new DeckOfCard();
-for (let j = 0; j <= 52; j++){
-    let i = deckOfCard.pickOneUnpicked();
-    console.log(i);
-}
+
+console.log('============ ALL CARDS ============ ')
+console.log(deckOfCard.getAll());
+console.log('============ Pick One Random ============')
+console.log(deckOfCard.pickOneRandom());
+console.log('============ Pick One Unpicked ============')
+console.log(deckOfCard.pickOneUnpicked());
+console.log('============ Pick One Specific (Diamond) ============')
+console.log(deckOfCard.pickOndeSpecific('DIAMOND'));
